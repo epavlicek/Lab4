@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import UserBar from "./user/UserBar";
+import PostList from "./post/PostList";
+import CreatePost from "./post/CreatePost";
+import { useState } from "react";
 
 function App() {
+  const initialPosts = [
+    {
+      title: "Finish Lab 2",
+      // content: "Some content",
+      author: "Lizzy",
+    },
+    {
+      title: "Buy Toothpaste",
+      //content: "Some content",
+      author: "Lizzy",
+    },
+  ];
+  const [user, setUser] = useState("");
+  const [posts, setPosts] = useState(initialPosts);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <UserBar user={user} setUser={setUser} />
+      <PostList posts={posts} />
+      {user && <CreatePost user={user} posts={posts} setPosts={setPosts} />}
     </div>
   );
 }
