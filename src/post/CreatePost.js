@@ -1,5 +1,5 @@
 import { useState } from "react";
-export default function CreatePost({ user, posts, setPosts, date }) {
+export default function CreatePost({ user, posts, setPosts, date, dispatch }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -7,13 +7,7 @@ export default function CreatePost({ user, posts, setPosts, date }) {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        const newPost = {
-          title,
-          content,
-          author: user,
-          date,
-        };
-        setPosts([newPost, ...posts]);
+        dispatch({ type: "CREATE_POST", title, content, date, author: user });
       }}
     >
       <div>

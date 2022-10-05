@@ -1,7 +1,8 @@
 import UserBar from "./user/UserBar";
 import PostList from "./post/PostList";
 import CreatePost from "./post/CreatePost";
-import { useState } from "react";
+import { useState, useReducer } from "react";
+import appReducer from "./reducers";
 
 function App() {
   const initialPosts = [
@@ -16,16 +17,22 @@ function App() {
       author: "Lizzy",
     },
   ];
-  const [user, setUser] = useState("");
-  const [posts, setPosts] = useState(initialPosts);
+  //const [user, setUser] = useState("");
+  //const [posts, setPosts] = useState(initialPosts);
+  const [state, dispatch] = useReducer(appReducer, {
+    user: "",
+    posts: initialPosts,
+  });
 
   return (
     <div>
-      <UserBar user={user} setUser={setUser} />
-      <PostList posts={posts} />
-      {user && <CreatePost user={user} posts={posts} setPosts={setPosts} />}
+      <UserBar user={state.user} dispatch={dispatch} />
+      <PostList posts={state.posts} />
+      {state.user && (
+        <CreatePost user={state.user} posts={state.posts} dispatch={dispatch} />
+      )}
     </div>
   );
 }
 
-export default App;
+//export default App;
