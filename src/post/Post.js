@@ -1,5 +1,22 @@
-export default function Post({ title, content, author, curDate }) {
+export default function Post({
+  title,
+  content,
+  author,
+  curDate,
+  todoComplete,
+  todoRemove,
+}) {
   curDate = Date.now();
+
+  /* function checkBox(){
+    todoComplete(post.id);
+  }
+
+  function removeClick(){
+    todoRemove(post.id);
+  }
+  */
+
   return (
     <div>
       <h3>{title}</h3>
