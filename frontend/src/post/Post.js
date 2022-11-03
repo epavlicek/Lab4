@@ -1,11 +1,8 @@
-export default function Post({
-  title,
-  content,
-  author,
-  curDate,
-  todoComplete,
-  todoRemove,
-}) {
+import React from "react";
+
+import { useContext } from "react";
+import { ThemeContext } from "../contexts";
+function Post({ title, content, author, curDate, todoComplete, todoRemove }) {
   curDate = Date.now();
 
   /* function checkBox(){
@@ -16,6 +13,8 @@ export default function Post({
     todoRemove(post.id);
   }
   */
+  const { secondaryColor } = useContext(ThemeContext);
+  console.log("Post rendered");
 
   return (
     <div>
@@ -43,3 +42,4 @@ export default function Post({
     </div>
   );
 }
+export default React.memo(Post);

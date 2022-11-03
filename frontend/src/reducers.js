@@ -17,8 +17,11 @@ function postReducer(state, action) {
         title: action.title,
         content: action.content,
         author: action.author,
+        id: action.id,
       };
       return [newPost, ...state];
+    case "FETCH_POSTS":
+      return action.posts;
     default:
       return state;
   }
