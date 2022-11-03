@@ -7,4 +7,4 @@ In new terminal:
 cd backend
 npm run start
 
-refrest
+refresh
